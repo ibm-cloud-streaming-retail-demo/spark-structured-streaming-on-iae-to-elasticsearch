@@ -37,7 +37,7 @@ Build the scala class and package to jar and copy it to IAE!
 
 ```
 sbt package
-scp target/scala-2.11/spark-structured-streaming-on-iae-to-cos_2.11-1.0.jar clsadmin@yourcluster:./
+scp target/scala-2.11/spark-structured-streaming-on-iae-to-elasticsearch_2.11-1.0.jar clsadmin@yourcluster:./
 ```
 
 Create a truststore on IAE for Elasticsearch certificate
