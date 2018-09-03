@@ -65,8 +65,6 @@ object Main {
       filter($"InvoiceNo".isNotNull).
       withColumn("InvoiceDateString", from_unixtime($"InvoiceDate" / 1000)) //.
 
-    val trigger_time_ms = conf.get("spark.trigger_time_ms").toInt
-
     dataDf   //Append output mode not supported when there are streaming aggregations on streaming DataFrames/DataSets without watermark
       .writeStream
       .outputMode(OutputMode.Append) //Only mode for ES

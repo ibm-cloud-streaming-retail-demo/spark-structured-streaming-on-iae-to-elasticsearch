@@ -1,6 +1,6 @@
 resolvers += "Spark Packages Repo" at "https://dl.bintray.com/spark-packages/maven"
 
-name := "spark-structured-streaming-on-iae-to-cos"
+name := "spark-structured-streaming-on-iae-to-elasticsearch"
 
 version := "1.0"
 scalaVersion := "2.11.12"

@@ -94,7 +94,7 @@ EOF
 Create a script to start spark interactively via yarn (paste this script into your IAE SSH session):
 
 ```
-cat << 'EOF' > start_yarn_client.sh
+cat << 'EOF' > start_yarn_client_elasticsearch.sh
 source config_es_kafka_vars.sh
 
 spark-submit --class main.Main \
@@ -113,19 +113,19 @@ spark-submit --class main.Main \
        --executor-cores 1 \
        spark-structured-streaming-on-iae-to-elasticsearch_2.11-1.0.jar
 EOF
-chmod +x start_yarn_client.sh
+chmod +x start_yarn_client_elasticsearch.sh
 ```
 
 Run the interactive script, you should see spark saving to COS and output sent to the terminal:
 
 ```
-bash -x start_yarn_client.sh
+bash -x start_yarn_client_elasticsearch.sh
 ```
 
 Create a script to start spark in the background via yarn (paste this script into your IAE SSH session):
 
 ```
-cat << 'EOF' > start_yarn_cluster.sh
+cat << 'EOF' > start_yarn_cluster_elasticsearch.sh
 source config_es_kafka_vars.sh
 
 spark-submit --class main.Main \
@@ -145,13 +145,13 @@ spark-submit --class main.Main \
        --executor-cores 1 \
        spark-structured-streaming-on-iae-to-elasticsearch_2.11-1.0.jar
 EOF
-chmod +x start_yarn_cluster.sh
+chmod +x start_yarn_cluster_elasticsearch.sh
 ```
 
 Run the script. It will terminate after submitting the job to yarn.
 
 ```
-bash -x start_yarn_cluster.sh
+bash -x start_yarn_cluster_elasticsearch.sh
 ```
 
 Verify that the spark job is running on yarn:
