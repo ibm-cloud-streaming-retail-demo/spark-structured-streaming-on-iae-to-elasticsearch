@@ -1,4 +1,4 @@
-Email support@compose.com and request Kibana to be enabled
+Email support@compose.com and request Kibana to be enabled on the Compose Elasticsearch cluster.
 
 Use Developer Tools in Kibana to add a mapping:
 
@@ -101,7 +101,7 @@ spark-submit --class main.Main \
        --master yarn \
        --deploy-mode client \
        --files jaas.conf \
-       --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
+       --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0,org.elasticsearch:elasticsearch-hadoop:6.2.3 \
        --conf "spark.driver.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf "spark.executor.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf spark.kafka_bootstrap_servers=$KAFKA_BOOTSTRAP_SERVERS \
@@ -132,7 +132,7 @@ spark-submit --class main.Main \
        --master yarn \
        --deploy-mode cluster \
        --files jaas.conf \
-       --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0 \
+       --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0,org.elasticsearch:elasticsearch-hadoop:6.2.3 \
        --conf "spark.driver.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf "spark.executor.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf spark.kafka_bootstrap_servers=$KAFKA_BOOTSTRAP_SERVERS \
