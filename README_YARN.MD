@@ -100,7 +100,7 @@ source config_es_kafka_vars.sh
 spark-submit --class main.Main \
        --master yarn \
        --deploy-mode client \
-       --files jaas.conf \
+       --files jaas.conf,my.jks \
        --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0,org.elasticsearch:elasticsearch-hadoop:6.2.3 \
        --conf "spark.driver.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf "spark.executor.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
@@ -131,7 +131,7 @@ source config_es_kafka_vars.sh
 spark-submit --class main.Main \
        --master yarn \
        --deploy-mode cluster \
-       --files jaas.conf \
+       --files jaas.conf,my.jks \
        --packages org.apache.spark:spark-sql-kafka-0-10_2.11:2.3.0,org.elasticsearch:elasticsearch-hadoop:6.2.3 \
        --conf "spark.driver.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
        --conf "spark.executor.extraJavaOptions=-Djava.security.auth.login.config=jaas.conf" \
