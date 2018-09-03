@@ -12,7 +12,7 @@ object Main {
   def main(args: Array[String]) {
 
     val conf = new SparkConf()
-      .setAppName("Structured Streaming from Message Hub to COS")
+      .setAppName("Structured Streaming from Message Hub to Elasticsearch")
 
     val spark = SparkSession
       .builder()
@@ -21,19 +21,7 @@ object Main {
 
     import spark.implicits._
 
-    val bucketName = conf.get("spark.s3_bucket")
-
-    // arbitrary name for refering to the cos settings from this code
-    val serviceName = "myservicename"
-
     val sc = spark.sparkContext
-
-    sc.hadoopConfiguration.set("fs.s3.impl", "org.apache.hadoop.fs.s3a.S3AFileSystem");
-    sc.hadoopConfiguration.set("fs.s3a.access.key", conf.get("spark.s3_accesskey"))
-    sc.hadoopConfiguration.set("fs.s3a.secret.key", conf.get("spark.s3_secretkey"))
-    sc.hadoopConfiguration.set("fs.s3a.endpoint", conf.get("spark.s3_endpoint"))
-
-    val s3Url = s"s3a://${bucketName}/"
 
     val schema = new StructType()
       .add("InvoiceNo", LongType)
@@ -70,7 +58,7 @@ object Main {
       .outputMode(OutputMode.Append) //Only mode for ES
       .format("org.elasticsearch.spark.sql") //es
       .queryName("ElasticSink")
-      .option("checkpointLocation", s"${s3Url}/checkpoint_elasticsearch")
+      .option("checkpointLocation", "checkpoint_elasticsearch")
       .option("es.nodes", conf.get("spark.es_nodes"))
       .option("es.port", conf.get("spark.es_port"))
       .option("es.net.http.auth.user", conf.get("spark.es_user"))
